@@ -17,5 +17,6 @@ COPY setup.py /src/
 COPY requirements.txt /src/
 RUN pip install .
 RUN pip install -r requirements.txt
-# Set EGL as the rendering backend for MuJoCo
-ENV MUJOCO_GL="egl"
+RUN loco-mujoco-download-perfect
+# # Set EGL as the rendering backend for MuJoCo
+# ENV MUJOCO_GL="egl"

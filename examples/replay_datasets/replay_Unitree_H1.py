@@ -9,7 +9,17 @@ def experiment(seed=0):
 
     mdp = LocoEnv.make("UnitreeH1.walk.real")
 
-    mdp.play_trajectory_from_velocity(n_episodes=3, n_steps_per_episode=500)
+    mdp.play_trajectory_from_velocity(
+        n_episodes=3,
+        n_steps_per_episode=500,
+        record=True,
+        # videos/stompy/video.mp4
+        recorder_params=dict(
+            path="test_video", 
+            tag="stompy",
+            video_name="video",
+        ),
+    )
 
 
 if __name__ == '__main__':
