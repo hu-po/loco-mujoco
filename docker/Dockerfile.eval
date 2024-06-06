@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg
 WORKDIR /src
 COPY loco_mujoco /src/loco_mujoco
+COPY examples /src/examples
 COPY pyproject.toml /src/
 COPY setup.py /src/
 COPY requirements.txt /src/
