@@ -1,4 +1,5 @@
 FROM nvidia/cuda:12.5.0-devel-ubuntu22.04
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential cmake \
     python3 \
@@ -8,15 +9,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libegl1-mesa-dev \
     libgl1-mesa-dev \
     libglew-dev \
-    ffmpeg
+    ffmpeg \
+    xvfb
+
 WORKDIR /src
 COPY loco_mujoco /src/loco_mujoco
 COPY examples /src/examples
 COPY pyproject.toml /src/
 COPY setup.py /src/
 COPY requirements.txt /src/
+
 RUN pip install .
 RUN pip install -r requirements.txt
 COPY loco_mujoco/datasets /usr/local/lib/python3.10/dist-packages/loco_mujoco/datasets
-# Set EGL as the rendering backend for MuJoCo
+
 ENV MUJOCO_GL="egl"
+ENV DISPLAY=:99
+RUN Xvfb :99 -screen 0 1024x768x24 &
