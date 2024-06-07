@@ -18,5 +18,5 @@ COPY requirements.txt /src/
 RUN pip install .
 RUN pip install -r requirements.txt
 COPY loco_mujoco/datasets /usr/local/lib/python3.10/dist-packages/loco_mujoco/datasets
-# # Set EGL as the rendering backend for MuJoCo
-# ENV MUJOCO_GL="egl"
+# Set EGL as the rendering backend for MuJoCo
+ENV MUJOCO_GL="egl"
